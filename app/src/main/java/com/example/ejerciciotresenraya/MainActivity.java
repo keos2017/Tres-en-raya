@@ -121,6 +121,8 @@ public class MainActivity extends Activity {
 
         marca(casilla);
 
+        partida.turno();
+
         casilla=partida.ia();
 
         while(partida.comprueba_casilla(casilla)!=true){
@@ -128,7 +130,7 @@ public class MainActivity extends Activity {
             casilla=partida.ia();
         }
 
-        partida.turno();
+
 
         marca(casilla);
 

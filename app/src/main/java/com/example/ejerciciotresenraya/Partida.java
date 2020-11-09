@@ -32,14 +32,36 @@ public class Partida {
         return true;
     }
 
-    public void turno(){
+    public int turno(){
+
+        boolean empate=true;
+
+        boolean ult_movimiento=true;
 
         for (int i=0;i<COMBINACIONES.length;i++){
 
             for(int pos:COMBINACIONES[i]){
 
-                System.out.println("Valor en posición " + i + " " + casillas[pos]);
-            }
+               System.out.println("Valor en posición " + pos + " " + casillas[pos]);
+
+               if(casillas[pos]!=jugador)ult_movimiento=false;
+
+                if(casillas[pos]==0){
+                    empate=false;
+                }
+            }//cierra el for anidado
+
+            System.out.println("----------------------------------------------------------------------");
+
+            if(ult_movimiento)return jugador;
+
+            ult_movimiento=true;
+
+        }//cierre el for principal
+
+        if(empate){
+
+            return 3;
         }
 
         jugador++;
@@ -48,6 +70,8 @@ public class Partida {
 
             jugador=1;
         }
+
+        return  0;
     }
 
     public int ia(){
