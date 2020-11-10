@@ -130,6 +130,11 @@ public class MainActivity extends Activity {
             return;
         }
 
+        if(jugadores==2){
+
+            return;
+        }
+
         casilla=partida.ia();
 
         while(partida.comprueba_casilla(casilla)!=true){
