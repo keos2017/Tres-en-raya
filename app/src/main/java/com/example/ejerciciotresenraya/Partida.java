@@ -74,9 +74,61 @@ public class Partida {
         return  0;
     }
 
+    public  int dosEnRaya(int jugador_en_turno){
+
+        int casilla=-1;
+
+        int cuantas_lleva=0;
+
+        for (int i=0;i<COMBINACIONES.length;i++) {
+
+            for (int pos : COMBINACIONES[i]) {
+
+                if(casillas[pos]==jugador_en_turno) cuantas_lleva++;
+
+                if(casillas[pos]==0) casilla=pos;
+
+            }
+
+            if(cuantas_lleva==2 && casilla!=-1)return casilla;
+
+            casilla=-1;
+
+            cuantas_lleva=0;
+
+        }
+
+        return -1;
+
+
+
+    }
+
     public int ia(){
 
         int casilla;
+
+        casilla=dosEnRaya(2);
+
+        if(casilla!=-1) return casilla;
+
+        if(dificultad>0){
+
+            casilla=dosEnRaya(1);
+
+            if (casilla!=-1) return casilla;
+        }
+
+        if (dificultad==2){
+
+            if(casillas[0]==0) return 0;
+
+            if(casillas[2]==0) return 2;
+
+            if(casillas[6]==0) return 6;
+
+            if(casillas[8]==0) return 8;
+        }
 
         Random casilla_azar=new Random();
 

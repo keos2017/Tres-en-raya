@@ -121,7 +121,14 @@ public class MainActivity extends Activity {
 
         marca(casilla);
 
-        partida.turno();
+        int resultado=partida.turno();
+
+        if(resultado>0){
+
+            termina(resultado);
+
+            return;
+        }
 
         casilla=partida.ia();
 
@@ -134,7 +141,39 @@ public class MainActivity extends Activity {
 
         marca(casilla);
 
-        partida.turno();
+        resultado=partida.turno();
+
+        if (resultado>0){
+
+            termina(resultado);
+        }
+
+    }
+
+    private void termina(int resultado){
+
+        String mensaje;
+
+        if (resultado==1) mensaje="Ganan los Círculos";
+
+        else if(resultado==2) mensaje="Ganan las aspas";
+
+        else mensaje="Empate";
+
+        Toast toast=Toast.makeText(this,mensaje, Toast.LENGTH_LONG);
+
+        toast.setGravity(Gravity.CENTER,0,0);
+
+        toast.show();
+
+        partida=null;
+
+        ((Button)findViewById(R.id.unjug)).setEnabled(true);
+
+        ((RadioGroup)findViewById(R.id.configD)).setAlpha(1);
+
+        ((Button)findViewById(R.id.dosjug)).setEnabled(true);
+
 
     }
 
